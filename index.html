@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- Heliora Solar System Information Center. Save as index.html and open in a browser (internet only needed for fonts). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Heliora Solar System Information Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050816;--bg2:#0e1433;--ink:#eef1ff;--mut:#9aa4d1;--gold:#f6b73c;--teal:#4fd1c5;--line:#232c5c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#050816}}
+*{box-sizing:border-box}html{scroll-padding-top:70px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Space Grotesk",system-ui,sans-serif;line-height:1.6;background-image:radial-gradient(1px 1px at 20% 30%,#fff8,transparent),radial-gradient(1px 1px at 70% 60%,#fff6,transparent),radial-gradient(1.5px 1.5px at 40% 80%,#fff7,transparent),radial-gradient(1px 1px at 85% 15%,#fff7,transparent);background-size:340px 340px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}a{color:inherit}
+header{position:sticky;top:0;z-index:30;background:#050816ea;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Fraunces,serif;font-weight:700;font-size:1.3rem}
+.brand small{display:block;font:400 .7rem "Space Grotesk";color:var(--mut)}
+nav a{margin-left:16px;text-decoration:none;color:var(--mut);font-weight:500}nav a:hover{color:var(--gold)}
+a:focus-visible,button:focus-visible,.it:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+main{max-width:1100px;margin:auto;padding:0 20px}
+.hero{text-align:center;padding:36px 0 6px}.hero h1{font-size:clamp(2.1rem,5.5vw,3.6rem)}.hero p{max-width:640px;margin:0 auto 10px;color:var(--mut)}
+.box{overflow-x:auto;margin:0 -20px;padding-bottom:6px}
+.sys{display:flex;align-items:center;width:1500px;height:360px;position:relative;transform-origin:left top}
+.sys:before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px dashed #ffffff22}
+.sun{flex:none;margin-left:-190px;margin-right:34px;position:relative;filter:drop-shadow(0 0 60px #f6b73c)}
+.sun span,.it span{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:14px;color:var(--mut);white-space:nowrap}
+.sun span{left:auto;right:30px;transform:none;bottom:20px;color:var(--gold)}
+.it{position:relative;height:360px;display:flex;align-items:center;margin-right:26px;cursor:pointer;flex:none}
+.it.sat{margin-right:56px;margin-left:30px}.it:hover span,.it:focus span{color:var(--gold)}
+.pw{position:relative;border-radius:50%;transition:transform .25s,box-shadow .25s;box-shadow:0 0 28px -6px var(--glow)}
+.pw canvas{position:relative;z-index:2;display:block}
+.pw canvas.rg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;pointer-events:none}.pw canvas.rg.f{z-index:3}
+.it:hover .pw,.it:focus .pw{transform:scale(1.12);box-shadow:0 0 50px 0 var(--glow)}
+.belt{position:relative;flex:none;width:120px;height:360px;margin-right:26px}.belt i{position:absolute;border-radius:50%;background:#a89f94;animation:dr 6s ease-in-out infinite alternate}
+.belt span{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:13px;color:var(--mut);white-space:nowrap}
+.belt.k{width:80px;margin-right:6px}.belt.k i{background:#8fa6c4}
+@keyframes dr{to{transform:translate(6px,-9px)}}
+.info{min-height:96px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:6px 0;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;text-align:left}
+.info b{font:700 1.3rem Fraunces,serif}.info small{color:var(--mut);display:block}.info div.s{display:flex;gap:22px;flex-wrap:wrap}.info div.s span{font-size:.85rem;color:var(--mut)}.info div.s em{display:block;font-style:normal;color:var(--ink);font-weight:700;font-size:1rem}
+.hint{color:var(--teal);font-size:.9rem}
+section{padding:44px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:18px}
+.stat{border-left:3px solid var(--gold);padding:4px 14px}.stat b{font:700 1.6rem Fraunces,serif;display:block}.stat span{color:var(--mut);font-size:.9rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+@media(max-width:760px){.two,.pgrid{grid-template-columns:1fr!important}nav a{margin-left:10px}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{display:flex;gap:14px;align-items:center;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px;text-decoration:none}.card:hover{border-color:var(--gold)}
+.card b{font-family:Fraunces,serif;font-size:1.1rem}.card span{display:block;color:var(--mut);font-size:.85rem}
+.dot{width:46px;height:46px;border-radius:50%;flex:none;box-shadow:inset -8px -6px 14px #0008}
+.bt{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.bt button{background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:inherit;cursor:pointer}
+.bt button.on{background:var(--gold);color:#1a1300;border-color:var(--gold);font-weight:700}
+.bar{height:6px;border-radius:3px;background:var(--line);position:relative;margin:10px 0 18px}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .5s}
+.bp{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;max-width:760px}.bp h3{margin-bottom:.2em}.bp .d{color:var(--gold);font-weight:700}
+.pgrid{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:center;padding:36px 0}
+.big{display:flex;justify-content:center;align-items:center;min-height:380px;cursor:grab;touch-action:none}.big img{max-width:100%;border-radius:50%}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:18px 0}
+.fact{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}.fact span{color:var(--mut);font-size:.8rem;display:block}.fact b{font-size:1.02rem}
+.btn{display:inline-block;background:var(--gold);color:#1a1300;font-weight:700;padding:9px 18px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;font:inherit;font-weight:700}
+ul.l{padding-left:20px}ul.l li{margin-bottom:8px}
+.calc{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;max-width:460px}.calc input{width:90px;margin:0 8px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px;font:inherit}.calc output{display:block;font:700 1.5rem Fraunces,serif;color:var(--gold);margin-top:6px}
+.pager{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:20px 0 50px;border-top:1px solid var(--line)}.pager a{color:var(--teal);text-decoration:none}
+form{display:grid;gap:10px;max-width:460px}form input,form textarea{background:var(--bg2);border:1px solid var(--line);border-radius:8px;color:var(--ink);padding:10px;font:inherit}
+footer{border-top:1px solid var(--line);color:var(--mut);text-align:center;padding:26px 20px;font-size:.9rem}
+@media(prefers-reduced-motion:reduce){.belt i{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<a class="brand" href="#home" aria-label="Heliora home">
+<svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true"><defs><radialGradient id="lg" cx=".4" cy=".35"><stop offset="0" stop-color="#ffe9a8"/><stop offset="1" stop-color="#f08a1c"/></radialGradient></defs><ellipse cx="24" cy="24" rx="22" ry="9" fill="none" stroke="#4fd1c5" stroke-width="2" transform="rotate(-25 24 24)"/><circle cx="24" cy="24" r="10" fill="url(#lg)"/><circle cx="43" cy="14" r="3" fill="#4fd1c5"/></svg>
+<span>Heliora<small>Solar System Information Center</small></span></a>
+<nav><a href="#home">Home</a><a href="#planets">Planets</a><a href="#beyond">Beyond</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+</div></header>
+<main id="app"></main>
+<footer>© 2026 Heliora Solar System Information Center · Figures are rounded averages from NASA public data.<br>Contact: info@heliora.example</footer>
+<script>
+/* ---------- DATA ---------- */
+// To use real NASA photos, add an image URL as the 21st item of any planet row (see "img" below).
+const K=['id','name','st','c','tag','diam','dist','day','year','moons','temp','g','atm','mass','speed','type','desc','facts','mis','sz','img'];
+const PL=[
+['mercury','Mercury','rock',['#6b645c','#b8afa3'],'The swift planet','4,879 km','57.9 million km','59 Earth days','88 Earth days','0','−180 to 430 °C',3.7,'Almost none (thin exosphere)','3.3 × 10²³ kg','47.4 km/s','Rocky planet','Mercury is the smallest planet and the closest to the Sun. With almost no air to hold heat, its days scorch and its nights freeze.',['Its surface is covered in craters, much like our Moon.','It orbits the Sun in 88 days but takes 59 to spin once.','Ice hides in permanently shadowed craters near its poles.'],'MESSENGER orbited it from 2011 to 2015. Europe and Japan’s BepiColombo is due to enter orbit around late 2026.',36],
+['venus','Venus','venus',['#c9a15a','#f0dcae'],'The veiled planet','12,104 km','108.2 million km','243 Earth days','225 Earth days','0','About 465 °C',8.9,'Thick carbon dioxide with sulfuric acid clouds','4.87 × 10²⁴ kg','35.0 km/s','Rocky planet','Venus is close to Earth in size, but its dense carbon dioxide atmosphere traps heat, making it the hottest planet.',['It spins backwards compared with most planets.','A day on Venus is longer than its year.','Surface pressure is about 90 times Earth’s.'],'Radar from NASA’s Magellan mapped most of the surface in the 1990s. DAVINCI, VERITAS and EnVision are planned.',66],
+['earth','Earth','earth',['#1d5fb5','#3f7f3a'],'Our home planet','12,742 km','149.6 million km','24 hours','365.25 days','1','About 15 °C',9.8,'78% nitrogen, 21% oxygen','5.97 × 10²⁴ kg','29.8 km/s','Rocky planet','Earth is the only known world with life. Liquid water covers about 70% of its surface, and its atmosphere and magnetic field shield living things.',['It is the densest planet in the solar system.','The Moon’s gravity creates ocean tides.','The 23.5° axis tilt gives us seasons.'],'Thousands of satellites watch Earth, and the International Space Station orbits about 400 km above it.',70],
+['mars','Mars','mars',['#8e3b20','#d98a5a'],'The red planet','6,779 km','227.9 million km','24.6 hours','687 Earth days','2','About −60 °C',3.7,'Thin carbon dioxide','6.42 × 10²³ kg','24.1 km/s','Rocky planet','Mars is a cold desert whose red colour comes from iron oxide. Robots there search for signs of ancient water and life.',['Olympus Mons, about 22 km high, is the tallest known volcano.','Its moons Phobos and Deimos are small and potato-shaped.','Dust storms can cover the whole planet.'],'The rovers Curiosity and Perseverance explore it today, and orbiters relay their data home.',50],
+['jupiter','Jupiter','gas',['#c89b72','#f0e0c8','#9c5b3a'],'The giant planet','139,820 km','778.5 million km','10 hours','11.9 Earth years','95+ known','About −110 °C',24.8,'Hydrogen and helium','1.90 × 10²⁷ kg','13.1 km/s','Gas giant','Jupiter is the largest planet, more than twice as massive as all the others combined, and made mostly of hydrogen and helium.',['The Great Red Spot is a storm larger than Earth that has lasted centuries.','Its moon Ganymede is bigger than Mercury.','It has faint rings.'],'NASA’s Juno has orbited since 2016. Europa Clipper, launched in 2024, will study the moon Europa.',190],
+['saturn','Saturn','gas',['#c8ac74','#efe0b8','#a88b55'],'The ringed planet','116,460 km','1.43 billion km','10.7 hours','29.5 Earth years','274 known','About −140 °C',10.4,'Hydrogen and helium','5.68 × 10²⁶ kg','9.7 km/s','Gas giant','Saturn is famous for bright rings of ice and rock. It is so light for its size that it would float in a big enough bathtub.',['The rings are only about 10 m thick in places.','Titan has a thick atmosphere and methane lakes.','Enceladus sprays water from its icy surface.'],'Cassini orbited from 2004 to 2017. NASA’s Dragonfly rotorcraft is planned for Titan.',150],
+['uranus','Uranus','ice',['#7fcfd6','#b9eef0'],'The sideways planet','50,724 km','2.87 billion km','17 hours','84 Earth years','29 known','About −195 °C',8.9,'Hydrogen, helium, methane','8.68 × 10²⁵ kg','6.8 km/s','Ice giant','Uranus is an ice giant that rotates on its side, so each pole faces the Sun in turn during its very long year.',['Its axis is tilted about 98°.','Methane gives it a blue-green colour.','It was the first planet found with a telescope, in 1781.'],'Only Voyager 2 has visited, flying past in 1986.',105],
+['neptune','Neptune','ice',['#1f3fb0','#4a78e0'],'The windy planet','49,244 km','4.5 billion km','16 hours','165 Earth years','16 known','About −200 °C',11.1,'Hydrogen, helium, methane','1.02 × 10²⁶ kg','5.4 km/s','Ice giant','Neptune is the most distant planet. It is dark, cold and swept by the fastest winds in the solar system.',['Winds reach about 2,000 km/h.','It was found by mathematics before it was seen.','It has made only one orbit since its discovery in 1846.'],'Only Voyager 2 has visited, in 1989.',102],
+['pluto','Pluto','rock',['#7d6450','#cdb9a4'],'The dwarf planet','2,377 km','5.9 billion km','6.4 Earth days','248 Earth years','5','About −230 °C',0.6,'Thin nitrogen and methane','1.3 × 10²² kg','4.7 km/s','Dwarf planet','Pluto was the ninth planet until 2006, when it was reclassified as a dwarf planet. It lives in the Kuiper Belt, a ring of icy bodies beyond Neptune.',['Its heart-shaped plain is called Tombaugh Regio.','Its moon Charon is half its size.','It has mountains of water ice.'],'NASA’s New Horizons flew past in 2015.',34]
+].map(r=>Object.fromEntries(K.map((k,i)=>[k,r[i]])));
+const SUN={id:'sun',st:'sun',c:['#ff8c14']};
+const B=[["Kuiper Belt","30–50 AU (4.5–7.5 billion km)","A wide ring of icy bodies beyond Neptune. It holds Pluto, Eris, Haumea and Makemake. New Horizons visited the object Arrokoth here in 2019.",8],
+["Heliopause","About 120 AU","The edge of the Sun’s influence, where the solar wind meets the gas between the stars. Voyager 1 crossed it in 2012 and Voyager 2 in 2018.",22],
+["Oort Cloud","About 2,000–100,000 AU","A hypothetical shell of trillions of icy bodies, thought to be the source of long-period comets. It has never been seen directly.",42],
+["Nearest star","Proxima Centauri, 4.24 light-years","A faint red dwarf. Its planet Proxima b orbits in the habitable zone. Light takes 4.24 years to arrive; Voyager 1 would need about 75,000 years.",62],
+["Milky Way","About 100,000 light-years across","Our galaxy holds 100–400 billion stars. The Sun lies about 26,000 light-years from the centre and circles it once every ~230 million years.",80],
+["Beyond the galaxy","Andromeda is 2.5 million light-years away","Andromeda is the nearest large galaxy. The observable universe is about 93 billion light-years across and contains hundreds of billions of galaxies, perhaps more.",96]];
+/* ---------- NOISE + TEXTURES ---------- */
+const $=s=>document.querySelector(s),TW=256,TH=128,T={};
+const h=(x,y,z)=>{const n=Math.sin(x*127.1+y*311.7+z*74.7)*43758.5453;return n-Math.floor(n)};
+function vn(x,y,z){const a=Math.floor(x),b=Math.floor(y),c=Math.floor(z),s=t=>t*t*(3-2*t),u=s(x-a),v=s(y-b),w=s(z-c),l=(p,q,t)=>p+(q-p)*t;
+return l(l(l(h(a,b,c),h(a+1,b,c),u),l(h(a,b+1,c),h(a+1,b+1,c),u),v),l(l(h(a,b,c+1),h(a+1,b,c+1),u),l(h(a,b+1,c+1),h(a+1,b+1,c+1),u),v),w)}
+function fbm(x,y,z,o=4){let a=.5,s=0,f=1;for(let i=0;i<o;i++){s+=a*vn(x*f,y*f,z*f);f*=2;a*=.5}return s}
+const hex=c=>[1,3,5].map(i=>parseInt(c.slice(i,i+2),16)),mix=(a,b,t)=>{t=Math.max(0,Math.min(1,t));return a.map((v,i)=>v+(b[i]-v)*t)};
+function tex(p){if(T[p.id])return T[p.id];const d=new Uint8ClampedArray(TW*TH*3),C=p.c.map(hex),s=p.st;
+for(let j=0;j<TH;j++){const lat=(.5-j/TH)*Math.PI,y=Math.sin(lat),cl=Math.cos(lat);
+for(let i=0;i<TW;i++){const lon=i/TW*6.2832,x=cl*Math.cos(lon),z=cl*Math.sin(lon);let c;
+if(s=='rock'){const n=fbm(x*4,y*4,z*4,5),k=vn(x*14,y*14,z*14);c=mix(C[0],C[1],n*1.6-.3).map(v=>v*(k>.78?1.25:k<.2?.75:1));
+ if(p.id=='pluto'){const dx=Math.sin((lon-3)/2)*2,dy=y-.1;if(dx*dx+dy*dy*4<.5)c=mix(c,[245,230,220],.7)}}
+else if(s=='venus'){const w=fbm(x*3,y*3,z*3,3);c=mix(C[0],C[1],fbm(x*2+w*2,y*5+w,z*2,4)*1.6-.2)}
+else if(s=='earth'){const e=fbm(x*2.2+3,y*2.2,z*2.2,5);c=e>.52?mix(C[1],[150,125,80],(e-.52)*4+Math.abs(y)*.2):mix([6,30,85],C[0],e*1.7);
+ c=mix(c,[255,255,255],(fbm(x*3+9,y*7,z*3,4)-.5)*3.2);if(Math.abs(y)>.87)c=mix(c,[240,245,250],(Math.abs(y)-.87)*25)}
+else if(s=='mars'){c=mix(C[0],C[1],fbm(x*3,y*3,z*3,5)*1.8-.35);if(Math.abs(y)>.9)c=mix(c,[245,245,250],(Math.abs(y)-.9)*12)}
+else if(s=='gas'){const w=fbm(x*3,y*1.5,z*3,4)*.35,b=Math.sin((y+w)*(p.id=='jupiter'?16:12))*.5+.5;c=mix(mix(C[0],C[1],b),C[2],fbm(x*6,y*14,z*6,3)*.6);
+ if(p.id=='jupiter'){const dx=Math.sin((lon-4)/2)*2,dy=y+.3,r=dx*dx*3+dy*dy*60;if(r<.5)c=mix(c,[190,70,40],(.5-r)*2)}}
+else if(s=='sun'){c=mix([255,130,20],[255,235,130],fbm(x*5,y*5,z*5,5)*1.6-.2)}
+else{c=mix(C[0],C[1],(Math.sin(y*9+fbm(x*2,y*2,z*2,3)*2)*.5+.5)*.5+fbm(x*3,y*3,z*3,3)*.5);if(p.id=='neptune')c=mix(c,[200,220,255],(fbm(x*5,y*12,z*5,3)-.62)*4)}
+const o=(j*TW+i)*3;d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2]}}
+return T[p.id]=d}
+function draw(o){const{cv,p,rot,S}=o,ctx=o.ctx||(o.ctx=cv.getContext('2d')),im=o.im||(o.im=ctx.createImageData(S,S)),D=im.data,d=tex(p),lit=p.st!='sun';
+for(let py=0;py<S;py++)for(let px=0;px<S;px++){const dx=(px+.5)/S*2-1,dy=1-(py+.5)/S*2,r2=dx*dx+dy*dy,k=(py*S+px)*4;if(r2>=1){D[k+3]=0;continue}
+const nz=Math.sqrt(1-r2),lat=Math.asin(dy),lon=Math.atan2(dx,nz)+rot,u=((lon/6.2832)%1+1)%1,t=(Math.min(TH-1,Math.floor((.5-lat/Math.PI)*TH))*TW+Math.floor(u*TW))*3;
+let sh=1;if(lit)sh=.06+.94*Math.max(0,-.85*dx+.24*dy+.47*nz)**.8;
+D[k]=d[t]*sh;D[k+1]=d[t+1]*sh;D[k+2]=d[t+2]*sh;D[k+3]=Math.min(1,(1-Math.sqrt(r2))*S/2)*255}
+ctx.putImageData(im,0,0)}
+function rg(S,front){const c=document.createElement('canvas'),Z=Math.round(S*2.3);c.width=c.height=Z;c.className='rg'+(front?' f':'');const x=c.getContext('2d');x.translate(Z/2,Z/2);x.rotate(-.35);
+if(front){x.beginPath();x.rect(-Z,0,2*Z,Z);x.clip()}
+for(let r=1.25;r<2.15;r+=.035){if(r>1.62&&r<1.7)continue;x.beginPath();x.ellipse(0,0,r*S/2,r*S/2*.3,0,0,6.2832);x.strokeStyle=`rgba(${215-r*14|0},${190-r*18|0},${150-r*20|0},${.55-Math.abs(r-1.7)*.25})`;x.lineWidth=S*.02;x.stroke()}return c}
+let live=[],raf,last=0;
+function mk(p,S,ring){const w=document.createElement('div');w.className='pw';w.style.cssText=`width:${S}px;height:${S}px;--glow:${p.c[0]}`;
+if(ring)w.appendChild(rg(S,0));const cv=document.createElement('canvas');cv.width=cv.height=S;w.appendChild(cv);if(ring)w.appendChild(rg(S,1));
+const o={cv,p,rot:Math.random()*6,S};draw(o);live.push(o);return{w,o}}
+function loop(n){raf=requestAnimationFrame(loop);if(n-last<40)return;const dt=Math.min(.1,(n-last)/1000);last=n;for(const o of live)if(!o.drag){o.rot+=dt*.15;draw(o)}}
+/* ---------- HOME ---------- */
+const dots=(n,cls,label)=>{let s=`<div class="belt ${cls}">`;for(let i=0;i<n;i++){const z=1+Math.random()*2.6;s+=`<i style="left:${Math.random()*100}%;top:${50+(Math.random()-.5)*(cls?30:36)}%;width:${z}px;height:${z}px;animation-delay:-${Math.random()*6}s"></i>`}return s+`<span>${label}</span></div>`};
+function stats(p){return `<div class="s"><span>Diameter<em>${p.diam}</em></span><span>Day<em>${p.day}</em></span><span>Year<em>${p.year}</em></span><span>Moons<em>${p.moons}</em></span></div>`}
+function home(){return `
+<div class="hero"><h1>Explore our solar system</h1><p>From the Sun on the left to Pluto on the right. Hover a planet to preview it, click to open its page.</p></div>
+<div class="box" id="box"><div class="sys" id="sys"></div></div>
+<div class="info" id="info"><div><b>Hover over a planet</b><small>Planet sizes are scaled for viewing, distances are not to scale.</small></div></div>
+<section id="learn"><div class="two"><div><h2>What is the solar system?</h2><p>The solar system is the Sun and everything held by its gravity: eight planets, their moons, dwarf planets, asteroids and comets. It formed about 4.6 billion years ago from a spinning cloud of gas and dust.</p><p>The four inner planets are small and rocky. Past the asteroid belt come two gas giants and two ice giants. Beyond Neptune, the Kuiper Belt holds icy worlds such as Pluto.</p></div>
+<div><h2>Quick numbers</h2><div class="stats"><div class="stat"><b>1</b><span>star, the Sun</span></div><div class="stat"><b>8</b><span>planets</span></div><div class="stat"><b>4.6 bn</b><span>years old</span></div><div class="stat"><b>99.8%</b><span>of mass is the Sun</span></div></div></div></div></section>
+<section id="planets"><h2>The planets</h2><div class="grid">${PL.map(p=>`<a class="card" href="#${p.id}"><i class="dot" style="background:radial-gradient(circle at 30% 30%,${p.c[1]},${p.c[0]})"></i><div><b>${p.name}</b><span>${p.type}</span></div></a>`).join('')}</div></section>
+<section id="beyond"><h2>What lies beyond the solar system?</h2><p style="max-width:700px;color:var(--mut)">Space does not end at Neptune. Pick a stop to travel outward. 1 AU is the Earth–Sun distance, about 150 million km.</p>
+<div class="bt" id="bt">${B.map((b,i)=>`<button data-i="${i}">${b[0]}</button>`).join('')}</div><div class="bar"><i id="bi"></i></div><div class="bp" id="bp"></div></section>
+<section id="about"><h2>About the center</h2><p style="max-width:680px">Heliora is a learning space for students, families and curious visitors. Each planet page lists size, distance, day and year length, moons, temperature, gravity and atmosphere, plus facts and a weight calculator.</p></section>
+<section id="contact"><h2>Contact us</h2><form onsubmit="event.preventDefault();this.querySelector('button').textContent='Message sent'"><input aria-label="Your name" placeholder="Your name" required><input type="email" aria-label="Email" placeholder="Email" required><textarea rows="4" aria-label="Message" placeholder="Your question" required></textarea><button class="btn">Send message</button></form></section>`}
+function initHome(){const sys=$('#sys'),info=$('#info');
+const sc=document.createElement('canvas');sc.width=sc.height=300;draw({cv:sc,p:SUN,rot:0,S:300});const sn=document.createElement('div');sn.className='sun';sn.append(sc);sn.insertAdjacentHTML('beforeend','<span>Sun</span>');sys.append(sn);
+for(const p of PL){if(p.id=='jupiter')sys.insertAdjacentHTML('beforeend',dots(80,'','Asteroid belt'));if(p.id=='pluto')sys.insertAdjacentHTML('beforeend',dots(40,'k','Kuiper Belt'));
+const it=document.createElement('div');it.className='it'+(p.id=='saturn'?' sat':'');it.tabIndex=0;it.setAttribute('role','link');it.setAttribute('aria-label',p.name+': open page');it.append(mk(p,p.sz,p.id=='saturn').w);it.insertAdjacentHTML('beforeend',`<span>${p.name}</span>`);
+const show=()=>info.innerHTML=`<div><b>${p.name}</b><small>${p.tag}</small></div>${stats(p)}<a class="btn" href="#${p.id}">Open ${p.name}</a>`;
+it.onmouseenter=it.onfocus=show;it.onclick=()=>location.hash=p.id;it.onkeydown=e=>{if(e.key=='Enter')location.hash=p.id};sys.append(it)}
+const fit=()=>{sys.style.zoom=Math.max(.55,Math.min(1,$('#box').clientWidth/1500))};fit();onresize=fit;
+const bt=$('#bt'),pick=i=>{[...bt.children].forEach((b,j)=>b.classList.toggle('on',i==j));$('#bi').style.width=B[i][3]+'%';$('#bp').innerHTML=`<h3>${B[i][0]}</h3><div class="d">${B[i][1]}</div><p>${B[i][2]}</p>`};
+bt.onclick=e=>{if(e.target.dataset.i)pick(+e.target.dataset.i)};pick(0)}
+/* ---------- PLANET PAGE ---------- */
+function planet(i){const p=PL[i],pv=PL[(i+8)%9],nx=PL[(i+1)%9];
+const F=[["Diameter",p.diam],["Distance from Sun",p.dist],["Length of day",p.day],["Length of year",p.year],["Moons",p.moons],["Temperature",p.temp],["Gravity",p.g+' m/s²'],["Mass",p.mass],["Orbital speed",p.speed],["Atmosphere",p.atm],["Type",p.type]];
+return `<div class="pgrid"><div class="big" id="big">${p.img?`<img src="${p.img}" alt="${p.name}">`:''}</div>
+<div><a href="#home" class="hint">Back to solar system</a><h1>${p.name}</h1><p style="color:var(--gold);margin-top:-8px">${p.tag}</p><p>${p.desc}</p><p class="hint">${p.img?'':'Drag the planet to rotate it.'}</p></div></div>
+<h2>Key facts</h2><div class="facts">${F.map(f=>`<div class="fact"><span>${f[0]}</span><b>${f[1]}</b></div>`).join('')}</div>
+<div class="two"><div><h2>Did you know?</h2><ul class="l">${p.facts.map(f=>`<li>${f}</li>`).join('')}</ul><h2>Exploration</h2><p>${p.mis}</p></div>
+<div><h2>Your weight on ${p.name}</h2><div class="calc"><label>Weight on Earth<input id="w" type="number" min="1" value="50"> kg</label><output id="wo"></output></div></div></div>
+<div class="pager"><a href="#${pv.id}">Previous: ${pv.name}</a><a class="btn" href="#home">All planets</a><a href="#${nx.id}">Next: ${nx.name}</a></div>`}
+function initPlanet(p){if(!p.img){const{w,o}=mk(p,Math.min(340,innerWidth-60),p.id=='saturn'),big=$('#big');big.append(w);let x=0;
+big.onpointerdown=e=>{o.drag=1;x=e.clientX;big.setPointerCapture(e.pointerId)};big.onpointermove=e=>{if(o.drag){o.rot-=(e.clientX-x)*.012;x=e.clientX;draw(o)}};big.onpointerup=()=>o.drag=0}
+const w=$('#w'),u=()=>$('#wo').textContent=(w.value*p.g/9.8).toFixed(1)+' kg';w.oninput=u;u()}
+/* ---------- ROUTER ---------- */
+function route(){cancelAnimationFrame(raf);live=[];const hh=location.hash.slice(1)||'home',i=PL.findIndex(p=>p.id==hh),app=$('#app');
+if(i>=0){document.title=PL[i].name+' | Heliora';app.innerHTML=planet(i);initPlanet(PL[i]);scrollTo(0,0)}
+else{document.title='Heliora Solar System Information Center';app.innerHTML=home();initHome();if(['planets','beyond','about','contact'].includes(hh))setTimeout(()=>document.getElementById(hh).scrollIntoView(),30);else scrollTo(0,0)}
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)raf=requestAnimationFrame(loop)}
+addEventListener('hashchange',route);route();
+</script>
+</body>
+</html>
